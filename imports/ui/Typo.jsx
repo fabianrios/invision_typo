@@ -1,16 +1,15 @@
 import React, { Component, PropTypes } from 'react';
  
-// Task component - represents a single todo item
+// Typo component - represents a single font item
 export default class Typo extends Component {
   render() {
     return (
-      <li>{this.props.typo.text}</li>
+      <li><h3 style={{fontFamily:this.props.typo.font}}>{this.props.typo.text}</h3></li>
     );
   }
 }
  
 Typo.propTypes = {
-  // This component gets the task to display through a React prop.
   // We can use propTypes to indicate it is required
-  task: PropTypes.object.isRequired,
+  typo: PropTypes.object.isRequired,
 };

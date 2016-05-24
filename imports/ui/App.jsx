@@ -6,9 +6,9 @@ import Typo from './Typo.jsx';
 export default class App extends Component {
   getTypos() {
     return [
-      { _id: 1, text: 'This is type 1' },
-      { _id: 2, text: 'This is type 2' },
-      { _id: 3, text: 'This is type 3' },
+      { _id: 1, text: 'This is type Average', font: 'Average' },
+      { _id: 2, text: 'This is type Cabin', font: 'Cabin' },
+      { _id: 3, text: 'This is type Cardo', font: 'Cardo' },
     ];
   }
  
@@ -25,7 +25,7 @@ export default class App extends Component {
           <input type="search" />
         </header>
  
-        <ul>
+        <ul className="request_data">
           {this.renderTypos()}
         </ul>
       </div>
