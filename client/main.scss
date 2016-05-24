@@ -1,0 +1,49 @@
+@import "{francocatena:compass}/compass";
+
+$bg-main:#a2a2a2;
+html{
+  margin: 20px;
+  background:lighten($bg-main,20%); // compass is working
+  position: relative;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body{
+  background: white;
+  height: 100vh;
+}
+
+header{
+  position: relative;
+  display: block;
+}
+
+div{
+  margin: 0;
+  padding: 0;
+}
+
+header{
+  margin-bottom:40px;
+}
+
+ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+input{
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  height: 30px;
+  border: 1px solid lightgray;
+  @include box-sizing(border-box);
+  &:focus{
+    outline:0;
+  }
+}
