@@ -12,12 +12,14 @@ html{
 }
 
 body{
+  position: relative;
   background: white;
-  height: 100vh;
 }
 
 header{
   position: relative;
+  top: 0;
+  width: 100%;
   display: block;
 }
 
@@ -42,7 +44,7 @@ ul{
 input{
   width: 100%;
   margin: 0;
-  padding: 0;
+  padding: 5px;
   height: 30px;
   border: 1px solid lightgray;
   @include box-sizing(border-box);
