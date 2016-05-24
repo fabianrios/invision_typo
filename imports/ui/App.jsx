@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
  
 import Typo from './Typo.jsx';
+import Color from './Color.jsx';
  
 // App component - represents the whole app
 export default class App extends Component {
@@ -67,7 +68,6 @@ export default class App extends Component {
     });  
   }
   
-    
   console.log(respond);
   return respond;
 }
@@ -80,17 +80,27 @@ export default class App extends Component {
       <Typo key={typo._id} typo={typo} />
     ));
   }
+  
+  renderColor(){
+    return <Color />
+  }
  
   render() {
     return (
       <div className="container">
+      <div className="color">{this.renderColor()}</div>
         <header>
           <input type="search" value={this.state.searchString} onChange={this.handleChange} />
         </header>
- 
+        
         <ul className="request_data">
           {this.renderTypos()}
         </ul>
+        <div className="other">
+          <div id="content">
+            <h1 id="text_display">Lorem ipsum dolor sit hmeg</h1>
+          </div>
+        </div>
       </div>
     );
   }
