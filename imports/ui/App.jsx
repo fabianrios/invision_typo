@@ -25,7 +25,7 @@ export default class App extends Component {
     this.setState({searchString:e.target.value});
   }
   
-  getTypos() {
+  getTypos(search) {
     
     var url = 'https://www.googleapis.com/webfonts/v1/webfonts?';
     var key = 'key=AIzaSyDrwscy04xGYMeRyeWOnxXilRnyCafwqHA';
@@ -43,36 +43,40 @@ export default class App extends Component {
       that = this;
       for (var i = 0; i < data.items.length/2; i++) {
         var font = data.items[i];
-        fonts.push(font.family);
-        respond.push({_id: i, text: 'This is type'+font.family, font: font.family});
+        //filter
+        if (font.family.indexOf(search) > -1){
+          fonts.push(font.family);
+          respond.push({_id: i, text: 'This is type '+font.family, font: font.family});
+        }
       }
-       
     }.bind(this),
     error: function(xhr, status, err) {
       // TO-DO:better reporting
       console.error(status, err.toString());
     }.bind(this)
   });
-
-  WebFont.load({
+  
+  if(fonts.length > 0){
+    WebFont.load({
       google: {
         families: fonts
       },
       active: function() {
         // Font's have loaded.. Do something!
-        //console.log("loaded");
       }
-    });
-    
-    return respond;
+    });  
   }
+  
+    
+  console.log(respond);
+  return respond;
+}
  
   renderTypos() {
     
     searchString = this.state.searchString.trim()
-    console.log(searchString);
     
-    return this.getTypos().map((typo) => (
+    return this.getTypos(searchString).map((typo) => (
       <Typo key={typo._id} typo={typo} />
     ));
   }

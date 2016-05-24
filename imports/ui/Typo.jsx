@@ -19,7 +19,7 @@ export default class Typo extends Component {
   render() {
     var text = this.state.liked ? '★' : '☆';
     return (
-      <li onClick={this.handleClick}><h3 style={{fontFamily:this.props.typo.font}}>{this.props.typo.text} {text}</h3></li>
+      <li onClick={this.handleClick}><h3 style={{fontFamily:this.props.typo.font}}> {this.props.typo.text} {text}</h3></li>
     );
   }
 }
