@@ -17,9 +17,9 @@ export default class Typo extends Component {
     console.log(this);
   }
   render() {
-    var text = this.state.liked ? '★' : '☆';
+    var text = this.state.liked ? 'big' : '☆';
     return (
-      <li onClick={this.handleClick}><h3 style={{fontFamily:this.props.typo.font}}> {this.props.typo.text} {text}</h3></li>
+      <li onClick={this.handleClick} className={text}><h3 style={{fontFamily:this.props.typo.font}}> {this.props.typo.text}</h3></li>
     );
   }
 }

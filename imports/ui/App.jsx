@@ -27,7 +27,7 @@ export default class App extends Component {
 
   
   colorChange(e){
-    console.log(e.currentTarget.id);
+    console.log($(".request_data").children());
     if (e.currentTarget.id == "text_display"){
       var color = {color:this.refs.colorpk.state.background};
     }else{
@@ -89,7 +89,7 @@ export default class App extends Component {
     searchString = this.state.searchString.trim()
     
     return this.getTypos(searchString).map((typo) => (
-      <Typo key={typo._id} typo={typo} />
+      <Typo key={typo._id} ref={typo.font} typo={typo} />
     ));
   }
   
@@ -105,7 +105,7 @@ export default class App extends Component {
     var pStyle = {
       color: this.state.pcolor
     };
-    
+    // TO-DO: value change
     return (
       <div className="container">
       <div className="color">{this.renderColor()}</div>
@@ -117,7 +117,7 @@ export default class App extends Component {
         </ul>
         <div className="other">
           <div id="content">
-            <input type="text" id="text_display" style={hStyle} onClick={this.colorChange} value="Lorem ipsum dolor sit amet" />
+            <input type="text" id="text_display" ref="main_text" style={hStyle} onClick={this.colorChange} value="Lorem ipsum dolor sit amet" />
             <div className="textarea">
               <textarea id="par_display" style={pStyle} onClick={this.colorChange}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore, maiores, id consequuntur totam perspiciatis explicabo exercitationem veritatis temporibus fugiat facere perferendis possimus velit ad earum aspernatur incidunt suscipit! Voluptatibus, tempora.</textarea>
             </div>
