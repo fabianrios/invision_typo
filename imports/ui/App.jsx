@@ -30,12 +30,19 @@ export default class App extends Component {
 
   
   colorChange(e){
-    var ff = $(".request_data").children(".big").children("h3").css('font-family').split(",")[0];
-    console.log(ff);
-    if (e.currentTarget.id == "text_display"){
-      var update = {color:this.refs.colorpk.state.background, family: ff};
+    var ff = $(".request_data").children(".big").children("h3").css('font-family');
+    // check if there is a font
+    if (typeof ff === "undefined"){
+      ff = "Open Sans"
     }else{
-      var update = {pcolor:this.refs.colorpk.state.background, pfamily: ff};
+      ff.split(",")[0];
+    }
+    var set_color = this.refs.colorpk.state.background;
+    console.log(ff, set_color);
+    if (e.currentTarget.id == "text_display"){
+      var update = {color:set_color, family: ff};
+    }else{
+      var update = {pcolor:set_color, pfamily: ff};
     }
     this.props.onColorChange(this, update);
   }

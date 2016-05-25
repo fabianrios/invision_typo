@@ -13,7 +13,9 @@ export default class Color extends Component {
   }
   
   handleChangeComplete(color) {
-    this.setState({ background: color.hex });
+    var set_color = 'rgba('+color.rgb.r+','+color.rgb.g+','+color.rgb.b+','+color.rgb.a+')';
+    console.log(set_color);
+    this.setState({ background: set_color });
   }
   
   
