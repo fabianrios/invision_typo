@@ -11,13 +11,15 @@ export default class Typo extends Component {
     };
   }
   handleClick() {
+    var liked_before = $(".request_data").children(".big");
+    liked_before.removeClass("big");
     this.setState({
-      liked: !this.state.liked,
+      liked: !this.state.liked
     });
     console.log(this);
   }
   render() {
-    var text = this.state.liked ? 'big' : '☆';
+    var text = this.state.liked ? 'big' : '☆'; // the star is for fun
     return (
       <li onClick={this.handleClick} className={text}><h3 style={{fontFamily:this.props.typo.font}}> {this.props.typo.text}</h3></li>
     );

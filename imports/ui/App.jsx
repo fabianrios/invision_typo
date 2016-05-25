@@ -21,19 +21,22 @@ export default class App extends Component {
     this.state = {
       searchString: "",
       color:"#000", 
-      pcolor:'#333'
+      pcolor:'#333',
+      family:'Open Sans',
+      pfamily:'Open Sans Condensed',
     };
   }
 
   
   colorChange(e){
-    console.log($(".request_data").children());
+    var ff = $(".request_data").children(".big").children("h3").css('font-family').split(",")[0];
+    console.log(ff);
     if (e.currentTarget.id == "text_display"){
-      var color = {color:this.refs.colorpk.state.background};
+      var update = {color:this.refs.colorpk.state.background, family: ff};
     }else{
-      var color = {pcolor:this.refs.colorpk.state.background};
+      var update = {pcolor:this.refs.colorpk.state.background, pfamily: ff};
     }
-    this.props.onColorChange(this, color);
+    this.props.onColorChange(this, update);
   }
   
   handleChange(e){
@@ -56,7 +59,7 @@ export default class App extends Component {
     cache: true,
     success: function(data) {
       that = this;
-      for (var i = 0; i < data.items.length/2; i++) {
+      for (var i = 0; i < data.items.length/1.5; i++) {
         var font = data.items[i];
         //filter
         if (font.family.indexOf(search) > -1){
@@ -99,11 +102,13 @@ export default class App extends Component {
   
   render() {
     var hStyle = {
-      color: this.state.color
+      color: this.state.color,
+      fontFamily: this.state.family
     };
     
     var pStyle = {
-      color: this.state.pcolor
+      color: this.state.pcolor,
+      fontFamily: this.state.pfamily
     };
     // TO-DO: value change
     return (
