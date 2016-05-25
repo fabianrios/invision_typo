@@ -24,6 +24,7 @@ export default class App extends Component {
       pcolor:'#333',
       family:'Open Sans',
       pfamily:'Open Sans Condensed',
+      text:"Lorem ipsum dolor sit amet"
     };
   }
 
@@ -37,6 +38,10 @@ export default class App extends Component {
       var update = {pcolor:this.refs.colorpk.state.background, pfamily: ff};
     }
     this.props.onColorChange(this, update);
+  }
+  
+  writing(e){
+    this.setState({text:e.target.value});
   }
   
   handleChange(e){
@@ -61,8 +66,9 @@ export default class App extends Component {
       that = this;
       for (var i = 0; i < data.items.length/1.5; i++) {
         var font = data.items[i];
+        var term = font.family.toLowerCase().replace(/\s+/g, '');
         //filter
-        if (font.family.indexOf(search) > -1){
+        if (term.indexOf(search.toLowerCase()) > -1){
           fonts.push(font.family);
           respond.push({_id: i, text: 'This is type '+font.family, font: font.family});
         }
@@ -101,6 +107,8 @@ export default class App extends Component {
   }
   
   render() {
+    var lorem = this.state.text;
+    
     var hStyle = {
       color: this.state.color,
       fontFamily: this.state.family
@@ -122,7 +130,7 @@ export default class App extends Component {
         </ul>
         <div className="other">
           <div id="content">
-            <input type="text" id="text_display" ref="main_text" style={hStyle} onClick={this.colorChange} value="Lorem ipsum dolor sit amet" />
+            <input type="text" id="text_display" ref="main_text" style={hStyle} onClick={this.colorChange} value={lorem} onChange={this.writing} />
             <div className="textarea">
               <textarea id="par_display" style={pStyle} onClick={this.colorChange}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore, maiores, id consequuntur totam perspiciatis explicabo exercitationem veritatis temporibus fugiat facere perferendis possimus velit ad earum aspernatur incidunt suscipit! Voluptatibus, tempora.</textarea>
             </div>

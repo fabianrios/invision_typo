@@ -8,7 +8,7 @@ export default class Color extends Component {
     super(props);
     this.handleChangeComplete = this.handleChangeComplete.bind(this);
     this.state = {
-      background: '#f9f9f9',
+      background: '#272121',
     };
   }
   
