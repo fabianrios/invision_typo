@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
- 
+import React, { Component, PropTypes } from 'react';
+
 import Typo from './Typo.jsx';
 import Color from './Color.jsx';
  
@@ -17,9 +17,16 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
+    this.colorChange = this.colorChange.bind(this);
     this.state = {
-      searchString: ""
+      searchString: "",
+      color:"#000"
     };
+  }
+
+  
+  colorChange(e){
+    this.props.onColorChange(this, this.refs.colorpk.state.background);
   }
   
   handleChange(e){
@@ -67,8 +74,6 @@ export default class App extends Component {
       }
     });  
   }
-  
-  console.log(respond);
   return respond;
 }
  
@@ -82,26 +87,32 @@ export default class App extends Component {
   }
   
   renderColor(){
-    return <Color />
+    return <Color ref="colorpk" />
   }
- 
+  
   render() {
+    var hStyle = {
+      color: this.state.color
+    };
+    
     return (
       <div className="container">
       <div className="color">{this.renderColor()}</div>
         <header>
           <input type="search" value={this.state.searchString} onChange={this.handleChange} />
         </header>
-        
         <ul className="request_data">
           {this.renderTypos()}
         </ul>
         <div className="other">
           <div id="content">
-            <h1 id="text_display">Lorem ipsum dolor sit hmeg</h1>
+            <h1 id="text_display" style={hStyle} onClick={this.colorChange}>Lorem ipsum dolor sit amet</h1>
           </div>
         </div>
       </div>
     );
   }
 }
+
+App.propTypes = {onColorChange: PropTypes.func.isRequired};  
+App.defaultProps = {onColorChange: function(that, color) {that.setState({color:color}); }};
