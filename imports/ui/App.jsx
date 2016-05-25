@@ -20,13 +20,20 @@ export default class App extends Component {
     this.colorChange = this.colorChange.bind(this);
     this.state = {
       searchString: "",
-      color:"#000"
+      color:"#000", 
+      pcolor:'#333'
     };
   }
 
   
   colorChange(e){
-    this.props.onColorChange(this, this.refs.colorpk.state.background);
+    console.log(e.currentTarget.id);
+    if (e.currentTarget.id == "text_display"){
+      var color = {color:this.refs.colorpk.state.background};
+    }else{
+      var color = {pcolor:this.refs.colorpk.state.background};
+    }
+    this.props.onColorChange(this, color);
   }
   
   handleChange(e){
@@ -95,6 +102,10 @@ export default class App extends Component {
       color: this.state.color
     };
     
+    var pStyle = {
+      color: this.state.pcolor
+    };
+    
     return (
       <div className="container">
       <div className="color">{this.renderColor()}</div>
@@ -106,7 +117,10 @@ export default class App extends Component {
         </ul>
         <div className="other">
           <div id="content">
-            <h1 id="text_display" style={hStyle} onClick={this.colorChange}>Lorem ipsum dolor sit amet</h1>
+            <input type="text" id="text_display" style={hStyle} onClick={this.colorChange} value="Lorem ipsum dolor sit amet" />
+            <div className="textarea">
+              <textarea id="par_display" style={pStyle} onClick={this.colorChange}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore, maiores, id consequuntur totam perspiciatis explicabo exercitationem veritatis temporibus fugiat facere perferendis possimus velit ad earum aspernatur incidunt suscipit! Voluptatibus, tempora.</textarea>
+            </div>
           </div>
         </div>
       </div>
@@ -115,4 +129,4 @@ export default class App extends Component {
 }
 
 App.propTypes = {onColorChange: PropTypes.func.isRequired};  
-App.defaultProps = {onColorChange: function(that, color) {that.setState({color:color}); }};
+App.defaultProps = {onColorChange: function(that, color) {that.setState(color); }};

@@ -34,6 +34,7 @@ header{
   margin-bottom:40px;
   @media screen and (min-width: 40em) {
     padding-top: 40px;
+    margin-bottom: 0;
   }
 }
 
@@ -46,7 +47,7 @@ ul{
   }
 }
 
-input{
+input[type='search']{
   width: 100%;
   margin: 0;
   padding: 5px;
@@ -67,7 +68,10 @@ input{
 .request_data{
   display: block;
   @media screen and (min-width: 40em) {
-    display: none;
+    height:300px;
+    margin: 0 auto;
+    text-align: center;
+    overflow: auto;
   }
 }
 
@@ -85,11 +89,40 @@ input{
   background-size:50px 50px;
   @media screen and (min-width: 40em) {
     display: block;
-    margin: 230px 0;
-    h1{
-      padding-top: 50px;
+    margin: 0;
+    input{
+      height: 150px;
+      width: 100%;
+      padding: 0;
+      margin: 0 auto;
+      display: block;
+      background: transparent;
+      border: 1px;
       font-size: 100px;
       text-align: center;
+      &:focus{
+        outline:0;
+      }
+    }
+  }
+}
+
+.textarea{
+  margin:0 75px;
+  text-align: center;
+  textarea{
+    margin: 0 auto;
+    padding: 0;
+    display: block;
+    width: 100%;
+    height: 300px;
+    border: 0;
+    background: transparent;
+    font-size: 1.3em;
+    line-height: 2.25em;
+    outline:0;
+    &:focus{
+      outline:0;
     }
   }
 }
